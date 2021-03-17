@@ -1,0 +1,196 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Helvetica-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 37
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "SwingUp"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CanvasLayer/Alert:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CanvasLayer/Alert:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 609, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CanvasLayer/Alert:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("CanvasLayer/Alert:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("CanvasLayer/Alert:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("CanvasLayer/Alert:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selection" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Selection"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.137255, 0.137255, 0.137255, 1 )
+
+[node name="CountryOption" type="OptionButton" parent="Selection"]
+margin_left = 260.0
+margin_top = 275.0
+margin_right = 471.0
+margin_bottom = 295.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchBar" type="LineEdit" parent="Selection"]
+margin_left = 524.0
+margin_top = 273.0
+margin_right = 735.0
+margin_bottom = 297.0
+placeholder_text = "Search Country"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchResults" type="ItemList" parent="Selection"]
+visible = false
+margin_left = 525.0
+margin_top = 300.0
+margin_right = 734.0
+margin_bottom = 543.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Error" type="Label" parent="Selection"]
+visible = false
+margin_left = 321.0
+margin_top = 233.0
+margin_right = 605.0
+margin_bottom = 250.0
+custom_fonts/font = SubResource( 3 )
+text = "Selected Country is Null"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Selection"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Alert" type="Control" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 609.0
+margin_bottom = 609.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatCheck" type="HTTPRequest" parent="CanvasLayer/Alert"]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Alert"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.137255, 0.137255, 0.137255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="RichTextLabel" parent="CanvasLayer/Alert"]
+margin_left = 137.0
+margin_top = 11.0
+margin_right = 502.0
+margin_bottom = 597.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+text = "Country:
+
+Active:
+
+New Cases:
+
+Total Cases:
+
+New Deaths:
+
+Total Deaths:
+
+Recovered:
+
+Critical:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats2" type="RichTextLabel" parent="CanvasLayer/Alert"]
+margin_left = 467.368
+margin_top = 11.0
+margin_right = 832.368
+margin_bottom = 597.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/SwingUp = SubResource( 2 )
